@@ -32,7 +32,7 @@ onMounted(async() => {
     <div>
       <button id="play">DEMO播放</button>
     </div>
-    <div class="loading-wrap" v-if="!loaded">
+    <div class="loading-wrap" v-if="false">
       <div class="text">资源准备中..</div>
       <div class="loading">
         <span></span>

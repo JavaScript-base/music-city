@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, render, reactive } from "vue";
+import { ref, onMounted, render, reactive, onUnmounted } from "vue";
 import { Entity } from "./enter";
 
 const state = reactive({
@@ -9,18 +9,22 @@ const state = reactive({
 
 let loaded = ref(false); // 场景是否准备好
 let musucloaded = ref(false); // 音乐是否处理完成
+let play = reactive(null)
 
 onMounted(async() => {
   // 初始化三维场景
   state.entity = new Entity();
+  play = document.getElementById("play")
   state.entity.initMusic('/music-city/assets/tesihe.mp3');
   loaded.value = await state.entity.initCity();
-  const play = document.getElementById("play");
   function triggerHandler() {
       state.entity.playMusic();
-      play.removeEventListener('mousedown', triggerHandler)
   }
   play.addEventListener('mousedown', triggerHandler);
+})
+
+onUnmounted(() => {
+  play.removeEventListener('mousedown', triggerHandler)
 })
 
 </script>

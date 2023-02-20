@@ -34,7 +34,7 @@ export class City {
     async loadCity() {
         // 加载模型并且渲染到画布
         return new Promise(((resolve, reject) => {
-            loadFBX('/music-city/assets/uploads_files_2720101_BusGameMap.fbx').then((object) => {
+            loadFBX('/music-city/assets/uploads_files_BusGameMap.fbx').then((object) => {
                 this.loaded = true;
                 object.children.forEach((child) => {
                     if(child.isMesh) {

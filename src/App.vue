@@ -13,14 +13,14 @@ let musucloaded = ref(false); // 音乐是否处理完成
 onMounted(async() => {
   // 初始化三维场景
   state.entity = new Entity();
+  state.entity.initMusic('/music-city/assets/tesihe.mp3');
   loaded.value = await state.entity.initCity();
   const play = document.getElementById("play");
-  state.entity.initMusic('/music-city/assets/tesihe.mp3')
   function triggerHandler() {
       state.entity.playMusic();
       play.removeEventListener('mousedown', triggerHandler)
   }
-  if(loaded.value) play.addEventListener('mousedown', triggerHandler);
+  play.addEventListener('mousedown', triggerHandler);
 })
 
 </script>
@@ -29,7 +29,7 @@ onMounted(async() => {
   <!-- <TodoMvc /> -->
   <div>
     <canvas id="webgl"></canvas>
-    <div v-if="loaded">
+    <div v-show="loaded">
       <button id="play">DEMO播放</button>
     </div>
     <div class="loading-wrap" v-if="!loaded">
